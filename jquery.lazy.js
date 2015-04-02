@@ -168,9 +168,6 @@
 
                         loadedImages = true;
 
-                        // mark element always as handled as this point to prevent double loading
-                        element.data(configuration("handledName"), true);
-
                         if( // image source attribute is available
                             element.attr(configuration("attribute")) &&
                             // and is image tag where attribute is not equal source 
@@ -180,6 +177,10 @@
                             // and is visible or visibility doesn't matter
                             (element.is(":visible") || !configuration("visibleOnly")) )
                         {
+
+                             // mark element always as handled as this point to prevent double loading
+                             element.data(configuration("handledName"), true);
+                             
                             // add item to loading queue
                             _addToQueue(function() { _handleItem(element, tag) });
                         }
